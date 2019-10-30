@@ -23,8 +23,7 @@ public class uri1068 {
 					   if(exp.charAt(i) == pec)
 							pe++;
 						else if(exp.charAt(i) == pdc)
-							pd++;
-					   sdfs
+							pd++;sasdfsd
 					}
 				
 				
