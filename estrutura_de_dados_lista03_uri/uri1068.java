@@ -14,7 +14,7 @@ public class uri1068 {
 		
 		do {
 			exp = ler.nextLine();
-			if(exp.length() > 1000)
+			if(exp.length() > 999)
 				break;
 			else if(exp.length() == 0)
 				break;
@@ -24,6 +24,7 @@ public class uri1068 {
 							pe++;
 						else if(exp.charAt(i) == pdc)
 							pd++;
+					   sdfs
 					}
 				
 				
