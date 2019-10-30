@@ -9,24 +9,36 @@ public class uri1068 {
 		Scanner ler = new Scanner(System.in);
 		String exp = new String();
 		int pe=0, pd=0;
-				
-//		System.out.println("Entre com a expressão:");
-		
+		char pec = ")".charAt(0);
+		char pdc = "(".charAt(0);		
 		
 		do {
 			exp = ler.nextLine();
 			if(exp.length() > 1000)
 				break;
+			else if(exp.length() == 0)
+				break;
 			else {
-				if(exp.contains(")") == true)
-					pe++;
-				else if(exp.contains("("))
-					pd++;
+				for (int i=0; i<exp.length(); i++) {
+					   if(exp.charAt(i) == pec)
+							pe++;
+						else if(exp.charAt(i) == pdc)
+							pd++;
+					}
+				
+				
 			}
-			System.out.println("pe " + pe + " pd " + pd);
 			
-		}while(!ler.nextLine().isEmpty());
+			if(pd==pe)
+				System.out.println("correct");
+			else
+				System.out.println("incorrect");
+			pd = 0;
+			pe = 0;
 			
+		}while(!exp.isEmpty());
+		
+		ler.close();	
 	}
 
 }
