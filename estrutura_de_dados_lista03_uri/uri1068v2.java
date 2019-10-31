@@ -1,23 +1,22 @@
-package uri1068;
+package estrutura_de_dados_lista03_uri;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Stack;
 
-public class Main {
+
+public class uri1068v2 {
 
 	public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
 		String exp = new String();
-		//int pe=0, pd=0;
 		int contador=0;
 		String resultado;
-		int tamanho_da_pilha = 0;
-		Queue<String> parenteses = new LinkedList<>();
+		int tamanho_da_lista = 0;
+		ArrayList<String> parenteses = new ArrayList<String>();
 		
 		char pe = ")".charAt(0);
 		char pd = "(".charAt(0);		
+		
 		
 		do {
 			exp = ler.nextLine();
@@ -34,30 +33,27 @@ public class Main {
 					   
 					}				
 			}
-			tamanho_da_pilha = parenteses.size();
-			for(int s=0; s<tamanho_da_pilha; s++) {
-				resultado = parenteses.remove();
-				//System.out.println("Valor de s: " + s);
-				//System.out.println(parenteses.size());
-				
-				
-				if(contador == 0 && resultado == ")") {
-					System.out.println("incorrect");
-					contador--;
-					//System.out.println(contador);
+			tamanho_da_lista = parenteses.size();
+			for(int s=0; s<tamanho_da_lista; s++) {
+				resultado = parenteses.get(s);
+				if(s == 0 && resultado == ")") {
+					contador = -123123123;
+					break;
 				}
 				else if(resultado == "(") {
 					contador++;
-					//System.out.println(contador);
 				}
 				else if(resultado == ")")
 					contador--;
 			}
-			//System.out.println(contador);
 			if(contador == 0)
-				System.out.println("correct");
+				System.out.print("correct");
+			else if(contador == -123123123)
+				System.out.print("incorrect");
 			else
-				System.out.println("incorrect");
+				System.out.print("incorrect");
+			parenteses.clear();
+			contador = 0;
 			
 		}while(!exp.isEmpty());
 		
