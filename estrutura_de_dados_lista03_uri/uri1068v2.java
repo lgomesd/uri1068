@@ -1,7 +1,7 @@
 package estrutura_de_dados_lista03_uri;
 
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Stack;
 
 
 public class uri1068v2 {
@@ -9,13 +9,12 @@ public class uri1068v2 {
 	public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
 		String exp = new String();
-		int contador=0;
-		String resultado;
-		int tamanho_da_lista = 0;
-		ArrayList<String> parenteses = new ArrayList<String>();
-		
+		Stack<String> parentesesd = new Stack<String>();
+		Stack<String> parentesese = new Stack<String>();
+		Stack<String> parentesesesolto = new Stack<String>();
 		char pe = ")".charAt(0);
-		char pd = "(".charAt(0);		
+		char pd = "(".charAt(0);	
+		int while_count = 0;
 		
 		
 		do {
@@ -26,37 +25,30 @@ public class uri1068v2 {
 				break;
 			else {
 				for (int i=0; i<exp.length(); i++) {
-					   if(exp.charAt(i) == pe) 
-						   parenteses.add(")");
-					   else if(exp.charAt(i) == pd)
-						   parenteses.add("(");
-					   
-					}				
+					   if(exp.charAt(i) == pd)
+						   parentesesd.push("(");
+					   else if(exp.charAt(i) == pe && parentesesd.size() > parentesese.size())
+						   parentesese.push(")");
+					   else if(exp.charAt(i) == pe && parentesesd.size() <= parentesese.size()) {
+						   parentesesesolto.push(")");
+					   }
 			}
-			tamanho_da_lista = parenteses.size();
-			for(int s=0; s<tamanho_da_lista; s++) {
-				resultado = parenteses.get(s);
-				if(s == 0 && resultado == ")") {
-					contador = -123123123;
-					break;
-				}
-				else if(resultado == "(") {
-					contador++;
-				}
-				else if(resultado == ")")
-					contador--;
+			if(parentesesd.size() != parentesese.size()) {
+				System.out.println("incorrect");
+				//break;
 			}
-			if(contador == 0)
-				System.out.print("correct");
-			else if(contador == -123123123)
-				System.out.print("incorrect");
-			else
-				System.out.print("incorrect");
-			parenteses.clear();
-			contador = 0;
+			else if(parentesesd.size() == parentesese.size() && parentesesesolto.size() == 0)
+				System.out.println("correct");
+			else if(parentesesesolto.size() != 0)
+				System.out.println("incorrect");
+			}
 			
-		}while(!exp.isEmpty());
-		
+				
+			parentesesd.clear();
+			parentesese.clear();
+			parentesesesolto.clear();
+			while_count++;
+		}while(while_count <= 1000);
 		ler.close();
 
 	}
